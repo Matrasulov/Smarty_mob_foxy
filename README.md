@@ -84,3 +84,30 @@ Hit:2 http://ports.ubuntu.com/ubuntu-ports focal-proposed InRelease
 Processing triggers for libc-bin (2.31-0ubuntu9.9) ..
 ```
  
+Then add the repository to your source list
+```
+akbarjon@ubuntu:~$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+```
+
+# Install ROS@ packages
+Update your apt repository caches after setting up the repositories.
+```
+akbarjon@ubuntu:~$ sudo apt update
+Hit:1 http://us.ports.ubuntu.com/ubuntu-ports focal InRelease           
+Hit:2 http://us.ports.ubuntu.com/ubuntu-ports focal-updates InRelease   
+Hit:3 http://us.ports.ubuntu.com/ubuntu-ports focal-backports InRelease
+```
+ROS 2 packages are built on frequently updated Ubuntu systems. It is always recommended that you ensure your system is up to date before installing new packages.
+```
+akbarjon@ubuntu:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+.
+.
+Processing triggers for dbus (1.12.16-2ubuntu2.2) ...
+Processing triggers for desktop-file-utils (0.24-1ubuntu3) ...
+```
+
+Desktop Install (Recommended): ROS, RViz, demos, tutorials.
+
