@@ -35,3 +35,52 @@ Generating locales (this might take a while)...
 Generation complete.
 ```
 
+```
+kbarjon@ubuntu:~$ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+akbarjon@ubuntu:~$ export LANG=en_US.UTF-8
+akbarjon@ubuntu:~$ locale
+LANG=en_US.UTF-8
+LANGUAGE=
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=
+```
+
+## Setup Sources
+ROS 2 apt repositories needs to be added to your system
+First, make sure that the Ubuntu Universe repository is enabled by checking the output of this command
+```
+kbarjon@ubuntu:~$ apt-cache policy | grep universe
+```
+There should output links like this:
+```
+ 500 http://ports.ubuntu.com/ubuntu-ports focal-security/universe arm64 Packages
+     release v=20.04,o=Ubuntu,a=focal-security,n=focal,l=Ubuntu,c=universe,b=arm64
+ 100 http://us.ports.ubuntu.com/ubuntu-ports focal-backports/universe arm64 Packag
+ ```
+ If you don’t see an output line like the one above, then enable the Universe repository with these instructions.
+ ```
+sudo apt install software-properties-common
+sudo add-apt-repository universe
+```
+
+Adding ROS2 apt repositories to your system.
+```
+akbarjon@ubuntu:~$ sudo apt update && sudo apt install curl gnupg2 lsb-release
+Hit:1 http://ports.ubuntu.com/ubuntu-ports focal-security InRelease     
+Hit:2 http://ports.ubuntu.com/ubuntu-ports focal-proposed InRelease     
+.
+.
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ..
+```
+ 
