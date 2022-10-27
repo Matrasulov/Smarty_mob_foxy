@@ -89,7 +89,7 @@ Then add the repository to your source list
 akbarjon@ubuntu:~$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 ```
 
-# Install ROS@ packages
+# Install ROS1 packages
 Update your apt repository caches after setting up the repositories.
 ```
 akbarjon@ubuntu:~$ sudo apt update
@@ -109,5 +109,76 @@ Processing triggers for dbus (1.12.16-2ubuntu2.2) ...
 Processing triggers for desktop-file-utils (0.24-1ubuntu3) ...
 ```
 
+```
+akbarjon@ubuntu:~$ sudo apt update -y
+Get:1 http://ports.ubuntu.com/ubuntu-ports focal-security InRelease [114 kB]                                 
+Get:2 http://packages.ros.org/ros/ubuntu focal InRelease [4,679 B]                                           
+.
+.
+Fetched 7,765 kB in 9s (900 kB/s)                                                                                                                    
+Reading package lists... Done
+Building dependency tree       
+
+```
+```
+akbarjon@ubuntu:~$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" >
+> /etc/apt/sources.list.d/ros-latest.list'
+[sudo] password for akbarjon: 
+sh: 2: Syntax error: newline unexpected
+akbarjon@ubuntu:~$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" >/etc/apt/sources.list.d/ros-latest.list'
+akbarjon@ubuntu:~$ sudo apt install curl
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+curl is already the newest version (7.68.0-1ubuntu2.14).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+akbarjon@ubuntu:~$ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+OK
+akbarjon@ubuntu:~$ sudo apt update -y
+Get:1 http://ports.ubuntu.com/ubuntu-ports focal-security InRelease [114 kB]                                 
+Get:2 http://packages.ros.org/ros/ubuntu focal InRelease [4,679 B]                                           
+Hit:3 http://us.ports.ubuntu.com/ubuntu-ports focal InRelease           
+```
 Desktop Install (Recommended): ROS, RViz, demos, tutorials.
+```
+akbarjon@ubuntu:~$ sudo apt install ros-foxy-desktop python3-argcomplete
+[sudo] password for akbarjon: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+
+```
+ROS-Base Install (Bare Bones): Communication libraries, message packages, command line tools. No GUI tools.
+```
+akbarjon@ubuntu:~$ sudo apt install ros-foxy-desktop python3-argcomplete
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  autoconf automake autotools-dev blt cmake cmake-data cpp-8 cppcheck cython3 dbus dbus-x11 default-libmysqlclient-dev docutils-common fonts-lyx
+  freeglut3 gcc-8 gcc-8-base gdal-data gfortran gfortran-8 gfortr...
+  ```
+  <img width="1361" alt="image" src="https://user-images.githubusercontent.com/76453238/198311604-2dc42095-7b2f-414e-9bd6-7daec9b1c5fe.png">
+
+  
+##Environment setup
+Sourcing the setup script
+
+Set up your environment by sourcing the following file.
+```
+# Replace ".bash" with your shell if you're not using bash
+# Possible values are: setup.bash, setup.sh, setup.zsh
+source /opt/ros/foxy/setup.bash
+```
+
+
+```
+akbarjon@ubuntu:~$ source /opt/ros/foxy/setup.bash
+akbarjon@ubuntu:~$ ros2 run demo_nodes_cpp talker
+[INFO] [1666880893.900723534] [talker]: Publishing: 'Hello World: 1'
+[INFO] [1666880894.904714803] [talker]: Publishing: 'Hello World: 2'
+[INFO] [1666880895.900497974] [talker]: Publishing: 'Hello World: 3'
+[INFO] [1666880896.900471760] [talker]: Publishing: 'Hello World: 4'
+[INFO] [1666880897.902563533] [talker]: Publishing: 'Hello World: 5'
+```
 
