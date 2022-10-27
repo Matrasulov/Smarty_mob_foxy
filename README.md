@@ -198,4 +198,55 @@ akbarjon@ubuntu:~$ ros2 run demo_nodes_py listener
 
 ```
 <img width="679" alt="Screen Shot 2022-10-28 at 3 02 31 AM" src="https://user-images.githubusercontent.com/76453238/198364945-7edc51fe-b53e-49dd-a0c0-ae7ac28a70ef.png">
+ 
+ 
+ Press Control/Command+C to stop
+ 
+ 
+ #Configuring environment
+ ```
+ akbarjon@ubuntu:~$ source /opt/ros/foxy/s
+setup.bash  setup.sh    setup.zsh   share/      src/
+akbarjon@ubuntu:~$ source /opt/ros/foxy/setup.bash 
+akbarjon@ubuntu:~$ printenv | grep -i ROS
+ROS_VERSION=2
+ROS_PYTHON_VERSION=3
+AMENT_PREFIX_PATH=/opt/ros/foxy
+PYTHONPATH=...
+LD_LIBRARY_PATH=...
+ROS_LOCALHOST_ONLY=0
+PATH=/opt...
+ROS_DISTRO=foxy
+akbarjon@ubuntu:~$ export ROS_DOMAIN_ID=<your_domain_id>
+bash: syntax error near unexpected token `newline'
+akbarjon@ubuntu:~$ export ROS_DOMAIN_ID=<your_domain_id>
+bash: syntax error near unexpected token `newline'
+akbarjon@ubuntu:~$ export ROS_DOMAIN_ID=<0>
+bash: syntax error near unexpected token `0'
+akbarjon@ubuntu:~$ export ROS_DOMAIN_ID=<101>
+bash: syntax error near unexpected token `101'
+akbarjon@ubuntu:~$ export ROS_LOCALHOST_ONLY=1
+akbarjon@ubuntu:~$ echo "export ROS_LOCALHOST_ONLY=1" >> ~/.bashrc
+```
+
+# Turtlesim installation
+```
+akbarjon@ubuntu:~$ sudo apt update
+[sudo] password for akbarjon: 
+Get:1 http://ports.ubuntu.com/ubuntu-ports focal-security InRelease [114 kB]
+Hit:2 http://packages.ros.org/ros/ubuntu focal InRelease               
+.
+Building dependency tree 
+Reading state information... Done
+
+akbarjon@ubuntu:~$ sudo apt install ros-foxy-turtlesim
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+ros-foxy-turtlesim is already the newest version (1.2.6-1focal.20221013.002018).
+ros-foxy-turtlesim set to manually installed.
+
+```
+
+
 
