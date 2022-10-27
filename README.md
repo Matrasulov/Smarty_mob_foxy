@@ -248,6 +248,50 @@ ros-foxy-turtlesim is already the newest version (1.2.6-1focal.20221013.002018).
 ros-foxy-turtlesim set to manually installed.
 
 ```
+check that the package iinstalled
+```
+akbarjon@ubuntu:~$ source /opt/ros/foxy/setup.bash
+akbarjon@ubuntu:~$ ros2 pkg executables turtlesim 
+```
+the above. command should return the list of turtlesim executeables
+```
+turtlesim draw_square
+turtlesim mimic
+turtlesim turtle_teleop_key
+turtlesim turtlesim_node
+```
+
+## Starting the turtlesim
+
+In order to start the turtlesim enter the following command in your terminal
+```
+akbarjon@ubuntu:~$ ros2 run turtlesim turtlesim_node
+[INFO] [1666904439.121519095] [turtlesim]: Starting turtlesim with node name /turtlesim
+[INFO] [1666904439.125220296] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+```
+The simulator windows shou;d illustrate random turtle in the centre like this:
+
+<img width="511" alt="Screen Shot 2022-10-28 at 6 02 22 AM" src="https://user-images.githubusercontent.com/76453238/198397394-9a2183ce-c227-40b8-933b-1bea1224ab9d.png">
 
 
+## Use turtlesim
 
+Open a new terminal and source ROS 2 again.
+
+Now you will run a new node to control the turtle in the first node
+```
+akbarjon@ubuntu:~$ source /opt/ros/foxy/setup.bash
+akbarjon@ubuntu:~$ ros2 run turtlesim turtle_teleop_key
+Reading from keyboard
+---------------------------
+Use arrow keys to move the turtle.
+Use G|B|V|C|D|E|R|T keys to rotate to absolute orientations. 'F' to cancel a rotation.
+'Q' to quit.
+ ```
+ <img width="1061" alt="Screen Shot 2022-10-28 at 6 14 28 AM" src="https://user-images.githubusercontent.com/76453238/198399484-fed8cb26-06de-45a3-a616-86df3408310f.png">
+
+At this point you should have three windows open: a terminal running turtlesim_node, a terminal running turtle_teleop_key and the turtlesim window. Arrange these windows so that you can see the turtlesim window, but also have the terminal running turtle_teleop_key active so that you can control the turtle in turtlesim.
+
+Use the arrow keys on your keyboard to control the turtle. It will move around the screen, using its attached “pen” to draw the path it followed so far.
+
+<img width="499" alt="Screen Shot 2022-10-28 at 6 15 15 AM" src="https://user-images.githubusercontent.com/76453238/198399612-6a56f990-e236-49cd-810e-887480342f91.png">
