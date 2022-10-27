@@ -230,6 +230,7 @@ akbarjon@ubuntu:~$ echo "export ROS_LOCALHOST_ONLY=1" >> ~/.bashrc
 ```
 
 # Turtlesim installation
+Install the ROS@ packages for your distro
 ```
 akbarjon@ubuntu:~$ sudo apt update
 [sudo] password for akbarjon: 
