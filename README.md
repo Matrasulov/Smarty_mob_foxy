@@ -170,7 +170,10 @@ Set up your environment by sourcing the following file.
 # Possible values are: setup.bash, setup.sh, setup.zsh
 source /opt/ros/foxy/setup.bash
 ```
+## Lets try some examples
+If you installed ros-foxy-desktop above you can try some examples.
 
+In one terminal, source the setup file and then run a C++ talker:
 
 ```
 akbarjon@ubuntu:~$ source /opt/ros/foxy/setup.bash
@@ -181,4 +184,18 @@ akbarjon@ubuntu:~$ ros2 run demo_nodes_cpp talker
 [INFO] [1666880896.900471760] [talker]: Publishing: 'Hello World: 4'
 [INFO] [1666880897.902563533] [talker]: Publishing: 'Hello World: 5'
 ```
+<img width="669" alt="image" src="https://user-images.githubusercontent.com/76453238/198364570-06bea6f6-88a9-49af-964d-191c57cff44e.png">
+
+In another terminal source the setup file and then run a Python listener:
+```
+akbarjon@ubuntu:~$ source /opt/ros/foxy/setup.bash 
+akbarjon@ubuntu:~$ ros2 run demo_nodes_py listener
+[INFO] [1666880931.915788012] [listener]: I heard: [Hello World: 39]
+[INFO] [1666880932.899806043] [listener]: I heard: [Hello World: 40]
+[INFO] [1666880933.903126481] [listener]: I heard: [Hello World: 41]
+[INFO] [1666880934.899787578] [listener]: I heard: [Hello World: 42]
+[INFO] [1666880935.901169540] [listener]: I heard: [Hello World: 43]
+
+```
+<img width="679" alt="Screen Shot 2022-10-28 at 3 02 31 AM" src="https://user-images.githubusercontent.com/76453238/198364945-7edc51fe-b53e-49dd-a0c0-ae7ac28a70ef.png">
 
