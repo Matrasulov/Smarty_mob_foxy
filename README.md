@@ -295,3 +295,7 @@ At this point you should have three windows open: a terminal running turtlesim_n
 Use the arrow keys on your keyboard to control the turtle. It will move around the screen, using its attached “pen” to draw the path it followed so far.
 
 <img width="499" alt="Screen Shot 2022-10-28 at 6 15 15 AM" src="https://user-images.githubusercontent.com/76453238/198399612-6a56f990-e236-49cd-810e-887480342f91.png">
+
+
+# rqr installation
+Open a new terminal and source the new terminal 
