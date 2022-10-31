@@ -1,5 +1,5 @@
 # Smarty_mob_foxy arm64
-All the commands on this repository is for Ubuntu 20.05(focal fossa) foxy version. As I initialllly used the lastest humble version of ubuntu and turtleot3 has no support for humble version, I had to convert to earlier foxy version of ubuntu.
+All the commands on this repository is for Ubuntu 20.05(focal fossa) foxy version. As I initialllly used the lastest humble version of ubuntu and turtlebot3 has no support for humble version, I had to convert to earlier foxy version of ubuntu.
 
 
 # Ubtuntu (Deebian)
