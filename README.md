@@ -297,5 +297,19 @@ Use the arrow keys on your keyboard to control the turtle. It will move around t
 <img width="499" alt="Screen Shot 2022-10-28 at 6 15 15 AM" src="https://user-images.githubusercontent.com/76453238/198399612-6a56f990-e236-49cd-810e-887480342f91.png">
 
 
-# rqr installation
-Open a new terminal and source the new terminal 
+# Use rqt
+
+After running rqt the first time, the window will be blank. No worries; just select Plugins > Services > Service Caller from the menu bar at the top.
+
+Use the refresh button to the left of the Service dropdown list to ensure all the services of your turtlesim node are available.
+
+Click on the Service dropdown list to see turtlesim’s services, and select the /spawn service.
+
+# 5.1 Try the spawn service
+
+Let’s use rqt to call the /spawn service. You can guess from its name that /spawn will create another turtle in the turtlesim window.
+
+Give the new turtle a unique name, like turtle2 by double-clicking between the empty single quotes in the Expression column. You can see that this expression corresponds to the name value, and is of type string.
+
+Enter new coordinates for the turtle to spawn at, like x = 1.0 and y = 1.0.
+<img width="603" alt="Screen Shot 2022-10-31 at 10 27 29 PM" src="https://user-images.githubusercontent.com/76453238/199018796-fb69256c-0445-4947-8f03-df82e6895892.png">
