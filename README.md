@@ -338,4 +338,14 @@ If you return to the terminal where turtle_teleop_key is running and press the a
 <img width="529" alt="image" src="https://user-images.githubusercontent.com/76453238/199135850-f79f5cf1-4034-402e-b0b8-bf614c87a510.png">
 
 
+You’ve probably noticed that there’s no way to move turtle2. You can accomplish this by remapping turtle1’s cmd_vel topic onto turtle2.
 
+# Remapping
+
+In a new terminal, source ROS 2, and run:
+
+```
+ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
+```
+
+Now you can move turtle2 when this terminal is active, and turtle1 when the other terminal running the turtle_teleop_key is active.
