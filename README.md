@@ -345,7 +345,15 @@ You’ve probably noticed that there’s no way to move turtle2. You can accompl
 In a new terminal, source ROS 2, and run:
 
 ```
-ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
+kbarjon@ubuntu:~$ source /opt/ros/foxy/setup.bash 
+akbarjon@ubuntu:~$ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
+Reading from keyboard
+---------------------------
+Use arrow keys to move the turtle.
+Use G|B|V|C|D|E|R|T keys to rotate to absolute orientations. 'F' to cancel a rotation.
+'Q' to quit.
+
+
 ```
 
 Now you can move turtle2 when this terminal is active, and turtle1 when the other terminal running the turtle_teleop_key is active.
