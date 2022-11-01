@@ -357,3 +357,9 @@ Use G|B|V|C|D|E|R|T keys to rotate to absolute orientations. 'F' to cancel a rot
 ```
 
 Now you can move turtle2 when this terminal is active, and turtle1 when the other terminal running the turtle_teleop_key is active.
+<img width="525" alt="Screen Shot 2022-11-01 at 10 08 16 AM" src="https://user-images.githubusercontent.com/76453238/199136964-8b2f4281-49b1-474b-84b9-e63c089a0d84.png">
+
+
+# Close turtlesim
+
+To stop the simulation, you can enter Ctrl + C in the turtlesim_node terminal, and q in the teleop terminal.
