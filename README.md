@@ -313,3 +313,15 @@ Give the new turtle a unique name, like turtle2 by double-clicking between the e
 
 Enter new coordinates for the turtle to spawn at, like x = 1.0 and y = 1.0.
 <img width="603" alt="Screen Shot 2022-10-31 at 10 27 29 PM" src="https://user-images.githubusercontent.com/76453238/199018796-fb69256c-0445-4947-8f03-df82e6895892.png">
+
+
+To spawn turtle2, you have to call the service by clicking the Call button on the upper right side of the rqt window.
+
+You will see a new turtle (again with a random design) spawn at the coordinates you input for x and y.
+
+If you refresh the service list in rqt, you will also see that now there are services related to the new turtle, /turtle2/…, in addition to /turtle1/….
+
+
+# Try the set_pen service
+
+Now let’s give turtle1 a unique pen using the /set_pen service:
