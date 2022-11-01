@@ -18,6 +18,7 @@ LC_NUMERIC="en_US.UTF-8"
 LC_TIME="en_US.UTF-8"
 ```
 
+
 ```
 akbarjon@ubuntu:~$ sudo apt update && sudo apt install locales
 [sudo] password for akbarjon: 
@@ -325,3 +326,11 @@ If you refresh the service list in rqt, you will also see that now there are ser
 # Try the set_pen service
 
 Now let’s give turtle1 a unique pen using the /set_pen service:
+
+<img width="610" alt="Screen Shot 2022-11-01 at 9 50 33 AM" src="https://user-images.githubusercontent.com/76453238/199135497-bbd1a0c2-687d-4b97-9549-6ee9d8c3003e.png">
+
+The values for r, g and b, between 0 and 255, will set the color of the pen turtle1 draws with, and width sets the thickness of the line.
+
+To have turtle1 draw with a distinct red line, change the value of r to 255, and the value of width to 5. Don’t forget to call the service after updating the values.
+
+If you return to the terminal where turtle_teleop_key is running and press the arrow keys, you will see turtle1’s pen has changed.
