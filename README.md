@@ -335,4 +335,7 @@ To have turtle1 draw with a distinct red line, change the value of r to 255, and
 
 If you return to the terminal where turtle_teleop_key is running and press the arrow keys, you will see turtle1’s pen has changed.
 
+<img width="529" alt="image" src="https://user-images.githubusercontent.com/76453238/199135850-f79f5cf1-4034-402e-b0b8-bf614c87a510.png">
+
+
 
