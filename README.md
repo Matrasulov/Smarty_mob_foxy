@@ -363,3 +363,179 @@ Now you can move turtle2 when this terminal is active, and turtle1 when the othe
 # Close turtlesim
 
 To stop the simulation, you can enter Ctrl + C in the turtlesim_node terminal, and q in the teleop terminal.
+
+
+# Creating a package
+```
+akbarjon@ubuntu:~$ cd ~/ros2_ws/src
+akbarjon@ubuntu:~/ros2_ws/src$ git clone https://github.com/ros/ros_tutorials.git -b foxy-devel
+Cloning into 'ros_tutorials'...
+remote: Enumerating objects: 2841, done.
+remote: Counting objects: 100% (161/161), done.
+remote: Compressing objects: 100% (88/88), done.
+remote: Total 2841 (delta 93), reused 131 (delta 71), pack-reused 2680
+Receiving objects: 100% (2841/2841), 617.66 KiB | 3.06 MiB/s, done.
+Resolving deltas: 100% (1710/1710), done.
+akbarjon@ubuntu:~/ros2_ws/src$ rosdep install -i --from-path src --rosdistro foxy -y
+
+Command 'rosdep' not found, but can be installed with:
+
+sudo apt install python3-rosdep2
+
+akbarjon@ubuntu:~/ros2_ws/src$ source /opt/ros/foxy/setup.bash
+akbarjon@ubuntu:~/ros2_ws/src$ rosdep install -i --from-path src --rosdistro foxy -y
+
+Command 'rosdep' not found, but can be installed with:
+
+sudo apt install python3-rosdep2
+
+akbarjon@ubuntu:~/ros2_ws/src$ cd
+akbarjon@ubuntu:~$ rosdep install -i --from-path src --rosdistro foxy -y
+\
+Command 'rosdep' not found, but can be installed with:
+
+sudo apt install python3-rosdep2
+
+akbarjon@ubuntu:~$ sudo apt install python3-rosdep2
+[sudo] password for akbarjon: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  python3-catkin-pkg python3-rosdistro
+The following NEW packages will be installed:
+  python3-catkin-pkg python3-rosdep2 python3-rosdistro
+0 upgraded, 3 newly installed, 0 to remove and 6 not upgraded.
+Need to get 63.0 kB of archives.
+After this operation, 394 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://packages.ros.org/ros/ubuntu focal/main arm64 python3-catkin-pkg all 0.5.2-100 [3,840 B]
+Get:2 http://packages.ros.org/ros/ubuntu focal/main arm64 python3-rosdistro all 0.9.0-100 [6,384 B]
+Get:3 http://us.ports.ubuntu.com/ubuntu-ports focal/universe arm64 python3-rosdep2 all 0.18.0-1 [52.8 kB]
+Fetched 63.0 kB in 5s (11.8 kB/s)          
+Selecting previously unselected package python3-catkin-pkg.
+(Reading database ... 275645 files and directories currently installed.)
+Preparing to unpack .../python3-catkin-pkg_0.5.2-100_all.deb ...
+Unpacking python3-catkin-pkg (0.5.2-100) ...
+Selecting previously unselected package python3-rosdistro.
+Preparing to unpack .../python3-rosdistro_0.9.0-100_all.deb ...
+Unpacking python3-rosdistro (0.9.0-100) ...
+Selecting previously unselected package python3-rosdep2.
+Preparing to unpack .../python3-rosdep2_0.18.0-1_all.deb ...
+Unpacking python3-rosdep2 (0.18.0-1) ...
+Setting up python3-catkin-pkg (0.5.2-100) ...
+Setting up python3-rosdistro (0.9.0-100) ...
+Setting up python3-rosdep2 (0.18.0-1) ...
+Processing triggers for man-db (2.9.1-1) ...
+akbarjon@ubuntu:~$ rosdep install -i --from-path src --rosdistro foxy -y
+
+ERROR: your rosdep installation has not been initialized yet.  Please run:
+
+    rosdep update
+
+akbarjon@ubuntu:~$ rosdep update
+reading in sources list data from /etc/ros/rosdep/sources.list.d
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml
+Query rosdistro index https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml
+Skip end-of-life distro "ardent"
+Skip end-of-life distro "bouncy"
+Skip end-of-life distro "crystal"
+Skip end-of-life distro "dashing"
+Skip end-of-life distro "eloquent"
+Add distro "foxy"
+Add distro "galactic"
+Skip end-of-life distro "groovy"
+Add distro "humble"
+Skip end-of-life distro "hydro"
+Skip end-of-life distro "indigo"
+Skip end-of-life distro "jade"
+Skip end-of-life distro "kinetic"
+Skip end-of-life distro "lunar"
+Add distro "melodic"
+Add distro "noetic"
+Add distro "rolling"
+updated cache in /home/akbarjon/.ros/rosdep/sources.cache
+akbarjon@ubuntu:~$ rosdep install -i --from-path src --rosdistro foxy -y
+given path 'src' does not exist
+akbarjon@ubuntu:~$ cd ros2_ws/src/
+akbarjon@ubuntu:~/ros2_ws/src$ rosdep install -i --from-path src --rosdistro foxy -y
+given path 'src' does not exist
+akbarjon@ubuntu:~/ros2_ws/src$ cd
+akbarjon@ubuntu:~$ cd ros2_ws/
+akbarjon@ubuntu:~/ros2_ws$ rosdep install -i --from-path src --rosdistro foxy -y
+#All required rosdeps installed successfully
+akbarjon@ubuntu:~/ros2_ws$ colcon build
+[0.268s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'examples_rclpy_minimal_subscriber' is in: /opt/ros/foxy
+	'examples_rclcpp_multithreaded_executor' is in: /opt/ros/foxy
+	'examples_rclcpp_minimal_action_server' is in: /opt/ros/foxy
+	'examples_rclcpp_minimal_subscriber' is in: /opt/ros/foxy
+	'examples_rclcpp_minimal_service' is in: /opt/ros/foxy
+	'examples_rclcpp_minimal_action_client' is in: /opt/ros/foxy
+	'examples_rclpy_minimal_client' is in: /opt/ros/foxy
+	'examples_rclcpp_minimal_client' is in: /opt/ros/foxy
+	'examples_rclpy_minimal_service' is in: /opt/ros/foxy
+	'examples_rclpy_minimal_action_client' is in: /opt/ros/foxy
+	'examples_rclcpp_minimal_composition' is in: /opt/ros/foxy
+	'examples_rclpy_minimal_publisher' is in: /opt/ros/foxy
+	'examples_rclpy_executors' is in: /opt/ros/foxy
+	'examples_rclcpp_minimal_publisher' is in: /opt/ros/foxy
+	'turtlesim' is in: /opt/ros/foxy
+	'examples_rclpy_minimal_action_server' is in: /opt/ros/foxy
+	'examples_rclcpp_minimal_timer' is in: /opt/ros/foxy
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding examples_rclcpp_minimal_action_client examples_rclcpp_minimal_action_server examples_rclcpp_minimal_client examples_rclcpp_minimal_composition examples_rclcpp_minimal_publisher examples_rclcpp_minimal_service examples_rclcpp_minimal_subscriber examples_rclcpp_minimal_timer examples_rclcpp_multithreaded_executor examples_rclpy_executors examples_rclpy_minimal_action_client examples_rclpy_minimal_action_server examples_rclpy_minimal_client examples_rclpy_minimal_publisher examples_rclpy_minimal_service examples_rclpy_minimal_subscriber turtlesim
+
+This may be promoted to an error in a future release of colcon-override-check.
+Starting >>> examples_rclcpp_minimal_action_client
+Starting >>> examples_rclcpp_minimal_action_server
+Finished <<< examples_rclcpp_minimal_action_server [0.88s]
+Starting >>> examples_rclcpp_minimal_client
+Finished <<< examples_rclcpp_minimal_action_client [0.94s]
+Starting >>> examples_rclcpp_minimal_composition
+Finished <<< examples_rclcpp_minimal_client [0.67s]
+Starting >>> examples_rclcpp_minimal_publisher
+Finished <<< examples_rclcpp_minimal_composition [0.75s]
+Starting >>> examples_rclcpp_minimal_service
+Finished <<< examples_rclcpp_minimal_publisher [0.63s]
+Starting >>> examples_rclcpp_minimal_subscriber
+Finished <<< examples_rclcpp_minimal_service [0.66s]
+Starting >>> examples_rclcpp_minimal_timer
+Finished <<< examples_rclcpp_minimal_subscriber [0.64s]
+Starting >>> examples_rclcpp_multithreaded_executor
+Finished <<< examples_rclcpp_minimal_timer [0.62s]
+Starting >>> examples_rclpy_executors
+Finished <<< examples_rclcpp_multithreaded_executor [0.60s]
+Starting >>> examples_rclpy_minimal_action_client
+Finished <<< examples_rclpy_executors [0.78s]                           
+Starting >>> examples_rclpy_minimal_action_server
+Finished <<< examples_rclpy_minimal_action_client [0.70s]
+Starting >>> examples_rclpy_minimal_client
+Finished <<< examples_rclpy_minimal_action_server [0.70s]
+Starting >>> examples_rclpy_minimal_publisher
+Finished <<< examples_rclpy_minimal_client [0.69s]
+Starting >>> examples_rclpy_minimal_service
+Finished <<< examples_rclpy_minimal_publisher [0.66s]
+Starting >>> examples_rclpy_minimal_subscriber
+Finished <<< examples_rclpy_minimal_service [0.75s]
+Starting >>> my_package
+Finished <<< examples_rclpy_minimal_subscriber [0.71s]
+Starting >>> turtlesim
+Finished <<< my_package [0.49s]                            
+Finished <<< turtlesim [22.9s]                         
+
+Summary: 18 packages finished [28.8s]
+akbarjon@ubuntu:~/ros2_ws$ ls
+build  install  log  src
+akbarjon@ubuntu:~/ros2_ws$ ros2 run turtlesim turtlesim_node
+[INFO] [1667368119.661811630] [turtlesim]: Starting turtlesim with node name /turtlesim
+[INFO] [1667368119.663392854] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+akbarjon@ubuntu:~/ros2_ws$ 
+```
