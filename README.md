@@ -1,5 +1,5 @@
 # Smarty_mob_foxy arm64
-All the commands on this repository is for Ubuntu 20.05(focal fossa) foxy version. As I initialllly used the lastest humble version of ubuntu and turtlebot3 has no support for humble version, I had to convert to earlier foxy version of ubuntu.
+All the commands on this repository is for Ubun 20.05(focal fossa) foxy version. As I initialllly used the lastest humble version of ubuntu and turtleot3 has no support for humble version, I had to convert to earlier foxy version of ubuntu.
 
 
 # Ubtuntu (Deebian)
@@ -17,7 +17,6 @@ LC_CTYPE="en_US.UTF-8"
 LC_NUMERIC="en_US.UTF-8"
 LC_TIME="en_US.UTF-8"
 ```
-
 
 ```
 akbarjon@ubuntu:~$ sudo apt update && sudo apt install locales
@@ -298,22 +297,49 @@ Use the arrow keys on your keyboard to control the turtle. It will move around t
 <img width="499" alt="Screen Shot 2022-10-28 at 6 15 15 AM" src="https://user-images.githubusercontent.com/76453238/198399612-6a56f990-e236-49cd-810e-887480342f91.png">
 
 
-# Use rqt
+# Installing rqt
+Open a new terminal to install rqt and the pluguns
 
+```
+akbarjon@ubuntu:~$ sudo apt update
+[sudo] password for akbarjon: 
+Hit:1 http://ports.ubuntu.com/ubuntu-ports focal-security InRelease   
+Hit:2 http://packages.ros.org/ros/ubuntu focal InRelease              
+Hit:3 http://packages.ros.org/ros2/ubuntu focal InRelease
+akbarjon@ubuntu:~$ sudo apt install ~nros-foxy-rqt*
+Reading package lists... Done
+Building dependency tree       
+.
+.
+ros-foxy-rqt-image-view set to manually installed.
+```
+
+To run rqt, enter the following command
+```
+akbarjon@ubuntu:~$ source /opt/ros/foxy/setup.bash
+akbarjon@ubuntu:~$ rqt
+ ```
+
+## Use rqt
 After running rqt the first time, the window will be blank. No worries; just select Plugins > Services > Service Caller from the menu bar at the top.
+<img width="603" alt="Screen Shot 2022-10-28 at 6 23 51 AM" src="https://user-images.githubusercontent.com/76453238/198401008-a43252a0-954a-47d5-8b46-611b74bf508d.png">
+
+
+<img width="601" alt="Screen Shot 2022-10-28 at 6 26 06 AM" src="https://user-images.githubusercontent.com/76453238/198401364-47869e46-dd5e-46c2-a00a-c6d08682d947.png">
 
 Use the refresh button to the left of the Service dropdown list to ensure all the services of your turtlesim node are available.
 
 Click on the Service dropdown list to see turtlesim’s services, and select the /spawn service.
 
-# 5.1 Try the spawn service
+##Try the spawn service
 
 Let’s use rqt to call the /spawn service. You can guess from its name that /spawn will create another turtle in the turtlesim window.
 
 Give the new turtle a unique name, like turtle2 by double-clicking between the empty single quotes in the Expression column. You can see that this expression corresponds to the name value, and is of type string.
 
 Enter new coordinates for the turtle to spawn at, like x = 1.0 and y = 1.0.
-<img width="603" alt="Screen Shot 2022-10-31 at 10 27 29 PM" src="https://user-images.githubusercontent.com/76453238/199018796-fb69256c-0445-4947-8f03-df82e6895892.png">
+
+<img width="622" alt="Screen Shot 2022-10-28 at 6 29 05 AM" src="https://user-images.githubusercontent.com/76453238/198401858-7634ff6d-eb30-4e79-be06-9c704300ee09.png">
 
 
 To spawn turtle2, you have to call the service by clicking the Call button on the upper right side of the rqt window.
@@ -322,220 +348,6 @@ You will see a new turtle (again with a random design) spawn at the coordinates 
 
 If you refresh the service list in rqt, you will also see that now there are services related to the new turtle, /turtle2/…, in addition to /turtle1/….
 
-
-# Try the set_pen service
+##Try the set_pen service
 
 Now let’s give turtle1 a unique pen using the /set_pen service:
-
-<img width="610" alt="Screen Shot 2022-11-01 at 9 50 33 AM" src="https://user-images.githubusercontent.com/76453238/199135497-bbd1a0c2-687d-4b97-9549-6ee9d8c3003e.png">
-
-The values for r, g and b, between 0 and 255, will set the color of the pen turtle1 draws with, and width sets the thickness of the line.
-
-To have turtle1 draw with a distinct red line, change the value of r to 255, and the value of width to 5. Don’t forget to call the service after updating the values.
-
-If you return to the terminal where turtle_teleop_key is running and press the arrow keys, you will see turtle1’s pen has changed.
-
-<img width="529" alt="image" src="https://user-images.githubusercontent.com/76453238/199135850-f79f5cf1-4034-402e-b0b8-bf614c87a510.png">
-
-
-You’ve probably noticed that there’s no way to move turtle2. You can accomplish this by remapping turtle1’s cmd_vel topic onto turtle2.
-
-# Remapping
-
-In a new terminal, source ROS 2, and run:
-
-```
-kbarjon@ubuntu:~$ source /opt/ros/foxy/setup.bash 
-akbarjon@ubuntu:~$ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
-Reading from keyboard
----------------------------
-Use arrow keys to move the turtle.
-Use G|B|V|C|D|E|R|T keys to rotate to absolute orientations. 'F' to cancel a rotation.
-'Q' to quit.
-
-
-```
-
-Now you can move turtle2 when this terminal is active, and turtle1 when the other terminal running the turtle_teleop_key is active.
-<img width="525" alt="Screen Shot 2022-11-01 at 10 08 16 AM" src="https://user-images.githubusercontent.com/76453238/199136964-8b2f4281-49b1-474b-84b9-e63c089a0d84.png">
-
-
-# Close turtlesim
-
-To stop the simulation, you can enter Ctrl + C in the turtlesim_node terminal, and q in the teleop terminal.
-
-
-# Creating a package
-```
-akbarjon@ubuntu:~$ cd ~/ros2_ws/src
-akbarjon@ubuntu:~/ros2_ws/src$ git clone https://github.com/ros/ros_tutorials.git -b foxy-devel
-Cloning into 'ros_tutorials'...
-remote: Enumerating objects: 2841, done.
-remote: Counting objects: 100% (161/161), done.
-remote: Compressing objects: 100% (88/88), done.
-remote: Total 2841 (delta 93), reused 131 (delta 71), pack-reused 2680
-Receiving objects: 100% (2841/2841), 617.66 KiB | 3.06 MiB/s, done.
-Resolving deltas: 100% (1710/1710), done.
-akbarjon@ubuntu:~/ros2_ws/src$ rosdep install -i --from-path src --rosdistro foxy -y
-
-Command 'rosdep' not found, but can be installed with:
-
-sudo apt install python3-rosdep2
-
-akbarjon@ubuntu:~/ros2_ws/src$ source /opt/ros/foxy/setup.bash
-akbarjon@ubuntu:~/ros2_ws/src$ rosdep install -i --from-path src --rosdistro foxy -y
-
-Command 'rosdep' not found, but can be installed with:
-
-sudo apt install python3-rosdep2
-
-akbarjon@ubuntu:~/ros2_ws/src$ cd
-akbarjon@ubuntu:~$ rosdep install -i --from-path src --rosdistro foxy -y
-\
-Command 'rosdep' not found, but can be installed with:
-
-sudo apt install python3-rosdep2
-
-akbarjon@ubuntu:~$ sudo apt install python3-rosdep2
-[sudo] password for akbarjon: 
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-The following additional packages will be installed:
-  python3-catkin-pkg python3-rosdistro
-The following NEW packages will be installed:
-  python3-catkin-pkg python3-rosdep2 python3-rosdistro
-0 upgraded, 3 newly installed, 0 to remove and 6 not upgraded.
-Need to get 63.0 kB of archives.
-After this operation, 394 kB of additional disk space will be used.
-Do you want to continue? [Y/n] y
-Get:1 http://packages.ros.org/ros/ubuntu focal/main arm64 python3-catkin-pkg all 0.5.2-100 [3,840 B]
-Get:2 http://packages.ros.org/ros/ubuntu focal/main arm64 python3-rosdistro all 0.9.0-100 [6,384 B]
-Get:3 http://us.ports.ubuntu.com/ubuntu-ports focal/universe arm64 python3-rosdep2 all 0.18.0-1 [52.8 kB]
-Fetched 63.0 kB in 5s (11.8 kB/s)          
-Selecting previously unselected package python3-catkin-pkg.
-(Reading database ... 275645 files and directories currently installed.)
-Preparing to unpack .../python3-catkin-pkg_0.5.2-100_all.deb ...
-Unpacking python3-catkin-pkg (0.5.2-100) ...
-Selecting previously unselected package python3-rosdistro.
-Preparing to unpack .../python3-rosdistro_0.9.0-100_all.deb ...
-Unpacking python3-rosdistro (0.9.0-100) ...
-Selecting previously unselected package python3-rosdep2.
-Preparing to unpack .../python3-rosdep2_0.18.0-1_all.deb ...
-Unpacking python3-rosdep2 (0.18.0-1) ...
-Setting up python3-catkin-pkg (0.5.2-100) ...
-Setting up python3-rosdistro (0.9.0-100) ...
-Setting up python3-rosdep2 (0.18.0-1) ...
-Processing triggers for man-db (2.9.1-1) ...
-akbarjon@ubuntu:~$ rosdep install -i --from-path src --rosdistro foxy -y
-
-ERROR: your rosdep installation has not been initialized yet.  Please run:
-
-    rosdep update
-
-akbarjon@ubuntu:~$ rosdep update
-reading in sources list data from /etc/ros/rosdep/sources.list.d
-Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml
-Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
-Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
-Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
-Hit https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml
-Query rosdistro index https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml
-Skip end-of-life distro "ardent"
-Skip end-of-life distro "bouncy"
-Skip end-of-life distro "crystal"
-Skip end-of-life distro "dashing"
-Skip end-of-life distro "eloquent"
-Add distro "foxy"
-Add distro "galactic"
-Skip end-of-life distro "groovy"
-Add distro "humble"
-Skip end-of-life distro "hydro"
-Skip end-of-life distro "indigo"
-Skip end-of-life distro "jade"
-Skip end-of-life distro "kinetic"
-Skip end-of-life distro "lunar"
-Add distro "melodic"
-Add distro "noetic"
-Add distro "rolling"
-updated cache in /home/akbarjon/.ros/rosdep/sources.cache
-akbarjon@ubuntu:~$ rosdep install -i --from-path src --rosdistro foxy -y
-given path 'src' does not exist
-akbarjon@ubuntu:~$ cd ros2_ws/src/
-akbarjon@ubuntu:~/ros2_ws/src$ rosdep install -i --from-path src --rosdistro foxy -y
-given path 'src' does not exist
-akbarjon@ubuntu:~/ros2_ws/src$ cd
-akbarjon@ubuntu:~$ cd ros2_ws/
-akbarjon@ubuntu:~/ros2_ws$ rosdep install -i --from-path src --rosdistro foxy -y
-#All required rosdeps installed successfully
-akbarjon@ubuntu:~/ros2_ws$ colcon build
-[0.268s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
-	'examples_rclpy_minimal_subscriber' is in: /opt/ros/foxy
-	'examples_rclcpp_multithreaded_executor' is in: /opt/ros/foxy
-	'examples_rclcpp_minimal_action_server' is in: /opt/ros/foxy
-	'examples_rclcpp_minimal_subscriber' is in: /opt/ros/foxy
-	'examples_rclcpp_minimal_service' is in: /opt/ros/foxy
-	'examples_rclcpp_minimal_action_client' is in: /opt/ros/foxy
-	'examples_rclpy_minimal_client' is in: /opt/ros/foxy
-	'examples_rclcpp_minimal_client' is in: /opt/ros/foxy
-	'examples_rclpy_minimal_service' is in: /opt/ros/foxy
-	'examples_rclpy_minimal_action_client' is in: /opt/ros/foxy
-	'examples_rclcpp_minimal_composition' is in: /opt/ros/foxy
-	'examples_rclpy_minimal_publisher' is in: /opt/ros/foxy
-	'examples_rclpy_executors' is in: /opt/ros/foxy
-	'examples_rclcpp_minimal_publisher' is in: /opt/ros/foxy
-	'turtlesim' is in: /opt/ros/foxy
-	'examples_rclpy_minimal_action_server' is in: /opt/ros/foxy
-	'examples_rclcpp_minimal_timer' is in: /opt/ros/foxy
-If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
-If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
-
-If you understand the risks and want to override a package anyways, add the following to the command line:
-	--allow-overriding examples_rclcpp_minimal_action_client examples_rclcpp_minimal_action_server examples_rclcpp_minimal_client examples_rclcpp_minimal_composition examples_rclcpp_minimal_publisher examples_rclcpp_minimal_service examples_rclcpp_minimal_subscriber examples_rclcpp_minimal_timer examples_rclcpp_multithreaded_executor examples_rclpy_executors examples_rclpy_minimal_action_client examples_rclpy_minimal_action_server examples_rclpy_minimal_client examples_rclpy_minimal_publisher examples_rclpy_minimal_service examples_rclpy_minimal_subscriber turtlesim
-
-This may be promoted to an error in a future release of colcon-override-check.
-Starting >>> examples_rclcpp_minimal_action_client
-Starting >>> examples_rclcpp_minimal_action_server
-Finished <<< examples_rclcpp_minimal_action_server [0.88s]
-Starting >>> examples_rclcpp_minimal_client
-Finished <<< examples_rclcpp_minimal_action_client [0.94s]
-Starting >>> examples_rclcpp_minimal_composition
-Finished <<< examples_rclcpp_minimal_client [0.67s]
-Starting >>> examples_rclcpp_minimal_publisher
-Finished <<< examples_rclcpp_minimal_composition [0.75s]
-Starting >>> examples_rclcpp_minimal_service
-Finished <<< examples_rclcpp_minimal_publisher [0.63s]
-Starting >>> examples_rclcpp_minimal_subscriber
-Finished <<< examples_rclcpp_minimal_service [0.66s]
-Starting >>> examples_rclcpp_minimal_timer
-Finished <<< examples_rclcpp_minimal_subscriber [0.64s]
-Starting >>> examples_rclcpp_multithreaded_executor
-Finished <<< examples_rclcpp_minimal_timer [0.62s]
-Starting >>> examples_rclpy_executors
-Finished <<< examples_rclcpp_multithreaded_executor [0.60s]
-Starting >>> examples_rclpy_minimal_action_client
-Finished <<< examples_rclpy_executors [0.78s]                           
-Starting >>> examples_rclpy_minimal_action_server
-Finished <<< examples_rclpy_minimal_action_client [0.70s]
-Starting >>> examples_rclpy_minimal_client
-Finished <<< examples_rclpy_minimal_action_server [0.70s]
-Starting >>> examples_rclpy_minimal_publisher
-Finished <<< examples_rclpy_minimal_client [0.69s]
-Starting >>> examples_rclpy_minimal_service
-Finished <<< examples_rclpy_minimal_publisher [0.66s]
-Starting >>> examples_rclpy_minimal_subscriber
-Finished <<< examples_rclpy_minimal_service [0.75s]
-Starting >>> my_package
-Finished <<< examples_rclpy_minimal_subscriber [0.71s]
-Starting >>> turtlesim
-Finished <<< my_package [0.49s]                            
-Finished <<< turtlesim [22.9s]                         
-
-Summary: 18 packages finished [28.8s]
-akbarjon@ubuntu:~/ros2_ws$ ls
-build  install  log  src
-akbarjon@ubuntu:~/ros2_ws$ ros2 run turtlesim turtlesim_node
-[INFO] [1667368119.661811630] [turtlesim]: Starting turtlesim with node name /turtlesim
-[INFO] [1667368119.663392854] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
-akbarjon@ubuntu:~/ros2_ws$ 
-```
